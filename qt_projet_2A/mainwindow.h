@@ -2,8 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTimer>
 
+// OpenCV
 #include <opencv2/highgui/highgui.hpp>
+#include <opencv/cv.h>
+
+using namespace cv;
 
 namespace Ui {
 class MainWindow;
@@ -16,9 +21,9 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    cv::VideoCapture webcam;
+    VideoCapture webcam;
     QImage getQImageFromFrame(cv::Mat frame);
-    cv::Mat captureFrame();
+    Mat captureFrame();
 
 private:
     Ui::MainWindow *ui;

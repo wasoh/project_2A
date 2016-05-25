@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "MatToQImage.h"
-#include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -46,7 +44,8 @@ void MainWindow::displayFrame() {
     QImage image = getQImageFromFrame(frame);
 
     //set the image of the label to be the captured frame and resize the label appropriately
-    ui->label->setPixmap(QPixmap::fromImage(image));
+    ui->label->setPixmap(QPixmap::fromImage(image).scaled(ui->label->width(), ui->label->height(),Qt::KeepAspectRatio));
+
     ui->label->resize(ui->label->pixmap()->size());
 }
 

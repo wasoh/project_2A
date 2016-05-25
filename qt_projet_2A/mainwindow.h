@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <QDebug>
 
 // OpenCV
 #include <opencv2/highgui/highgui.hpp>

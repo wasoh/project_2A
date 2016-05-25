@@ -19,25 +19,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-//void MainWindow::Cam(int deviceNumber){
-//    cv::VideoCapture cap;
-//    cv::Mat grabbedFrame;
-//    QImage frame;
-
-//    bool camOpenResult = cap.open(deviceNumber);
-//    // Set resolution
-//    cap.set(CV_CAP_PROP_FRAME_WIDTH, 1);
-//    cap.set(CV_CAP_PROP_FRAME_HEIGHT, 1);
-
-//    while(1){// Retrieve frame
-//        if (!cap.grab())
-//            cap.retrieve(grabbedFrame);
-//        frame = MatToQImage(grabbedFrame);
-//        ui->graphicsView->setPixmap(QPixmap::fromImage(frame).scaled(ui->graphicsView->width(), ui->graphicsView->height(),Qt::KeepAspectRatio));
-
-//    }
-//}
-
 void MainWindow::displayFrame() {
     //capture a frame from the webcam
     cv::Mat frame = captureFrame();
@@ -46,7 +27,7 @@ void MainWindow::displayFrame() {
     //set the image of the label to be the captured frame and resize the label appropriately
     ui->label->setPixmap(QPixmap::fromImage(image).scaled(ui->label->width(), ui->label->height(),Qt::KeepAspectRatio));
 
-    ui->label->resize(ui->label->pixmap()->size());
+    //ui->label->resize(ui->label->pixmap()->size());
 }
 
 cv::Mat MainWindow::captureFrame()
@@ -55,17 +36,17 @@ cv::Mat MainWindow::captureFrame()
     //determine whether or not the webcam video stream was successfully initialized
     if(!webcam.isOpened())
     {
-        //qDebug() << "Camera initialization failed.";
+        qDebug() << "Camera initialization failed.";
     }
 
     //attempts to grab a frame from the webcam
     if (!webcam.grab()) {
-        //qDebug() << "Failed to capture frame.";
+        qDebug() << "Failed to capture frame.";
     }
 
     //attempts to read the grabbed frame and stores it in frame
     if (!webcam.read(frame)) {
-        //qDebug() << "Failed to read data from captured frame.";
+        qDebug() << "Failed to read data from captured frame.";
     }
 
     return frame;

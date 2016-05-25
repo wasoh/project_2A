@@ -25,7 +25,7 @@ void MainWindow::displayFrame() {
     QImage image = getQImageFromFrame(frame);
 
     //set the image of the label to be the captured frame and resize the label appropriately
-    ui->label->setPixmap(QPixmap::fromImage(image).scaled(ui->label->width(), ui->label->height(),Qt::KeepAspectRatio));
+    ui->label_cam->setPixmap(QPixmap::fromImage(image).scaled(ui->label_cam->width(), ui->label_cam->height(),Qt::KeepAspectRatio));
 
     //ui->label->resize(ui->label->pixmap()->size());
 }

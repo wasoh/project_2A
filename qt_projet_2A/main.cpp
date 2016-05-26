@@ -168,7 +168,7 @@ int test()
     //video capture object to acquire webcam feed
     VideoCapture capture;
     //open capture object at location zero (default location for webcam)
-    capture.open(1);
+    capture.open(0);
     //set height and width of capture frame
     capture.set(CV_CAP_PROP_FRAME_WIDTH, FRAME_WIDTH);
     capture.set(CV_CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT);
@@ -208,6 +208,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
-    test();
+    //test();
     return a.exec();
 }

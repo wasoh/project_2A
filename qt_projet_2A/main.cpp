@@ -7,6 +7,7 @@
 #include "opencv/highgui.h"
 #include "Ball.h"
 #include "opencv/cv.h"
+#include <libssh/libssh.h>
 
 using namespace cv;
 //initial min and max HSV filter values.
@@ -203,11 +204,56 @@ int test()
     return 0;
 }
 
+int sshTest(){
+    char* hostname = "robot@192.168.62.103";
+    char* password = "maker";
+    int port = 22;
+    bool test=NULL;
+    ssh_session my_ssh_session = ssh_new();
+
+    if(my_ssh_session == NULL){
+        exit(-1);
+    }
+
+    // Options de connexion
+    ssh_options_set(my_ssh_session, SSH_OPTIONS_HOST, hostname);
+    //ssh_options_set(my_ssh_session, SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
+    ssh_options_set(my_ssh_session, SSH_OPTIONS_PORT, &port);
+    //ssh_options_set(my_ssh_session, SSH_OPTIONS_USER, "root");
+
+    // On vérifie que la connexion se passe bien
+    test = ssh_connect(my_ssh_session);
+    if(test != SSH_OK){
+        qDebug("Erreur de connexion \nFin du programme");
+        exit(-1);
+    }
+
+    qDebug("Connexion success");
+
+    // Connexion à l'aide des identifiant
+    test = ssh_userauth_password(my_ssh_session, NULL, password);
+    if(test != SSH_AUTH_SUCCESS){
+        qDebug("Erreur d'identification\nFin du programme");
+        ssh_disconnect((my_ssh_session));
+        ssh_free(my_ssh_session);
+        exit(-1);
+    }
+
+    qDebug("Authntification success");
+
+    // On ferme toutes les connexions avant de terminer le programme
+    ssh_disconnect(my_ssh_session);
+    ssh_free(my_ssh_session);
+    qDebug("Fin de l'initialisation");
+    //sleep(10);
+}
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
     //test();
+    sshTest();
     return a.exec();
 }

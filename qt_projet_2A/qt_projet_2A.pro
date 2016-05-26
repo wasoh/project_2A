@@ -16,7 +16,7 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     Ball.cpp
 
-LIBS += `pkg-config opencv --libs`
+LIBS += `pkg-config opencv --libs` -lssh
 
 HEADERS  += mainwindow.h \
     Ball.h

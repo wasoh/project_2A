@@ -24,6 +24,7 @@ public:
     ~MainWindow();
     VideoCapture webcam;
     QImage getQImageFromFrame(cv::Mat frame);
+    QImage ProcessingFrame(cv::Mat frame);
     Mat captureFrame();
 
 private:

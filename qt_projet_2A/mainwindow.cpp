@@ -6,12 +6,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    webcam.open(0);
-    int fps = 1000/25;
-    QTimer *qTimer = new QTimer(this);
-    qTimer->setInterval(fps);
-    connect(qTimer, SIGNAL(timeout()), this, SLOT(displayFrame()));
-    qTimer->start();
+//    webcam.open(0);
+//    int fps = 1000/25;
+//    QTimer *qTimer = new QTimer(this);
+//    qTimer->setInterval(fps);
+//    connect(qTimer, SIGNAL(timeout()), this, SLOT(displayFrame()));
+//    qTimer->start();
 }
 
 MainWindow::~MainWindow()
@@ -23,9 +23,11 @@ void MainWindow::displayFrame() {
     //capture a frame from the webcam
     cv::Mat frame = captureFrame();
     QImage image = getQImageFromFrame(frame);
+    QImage image2 = ProcessingFrame(frame);
 
     //set the image of the label to be the captured frame and resize the label appropriately
-    ui->label->setPixmap(QPixmap::fromImage(image).scaled(ui->label->width(), ui->label->height(),Qt::KeepAspectRatio));
+    ui->label_cam->setPixmap(QPixmap::fromImage(image).scaled(ui->label_cam->width(), ui->label_cam->height(),Qt::KeepAspectRatio));
+    ui->label_camTraitement->setPixmap(QPixmap::fromImage(image2).scaled(ui->label_camTraitement->width(), ui->label_camTraitement->height(),Qt::KeepAspectRatio));
 
     //ui->label->resize(ui->label->pixmap()->size());
 }
@@ -57,3 +59,13 @@ QImage MainWindow::getQImageFromFrame(cv::Mat frame) {
     cv::cvtColor(frame, frame, CV_RGB2BGR);
     return QImage((uchar*) (frame.data), frame.cols, frame.rows, frame.step, QImage::Format_RGB888);
 }
+
+QImage MainWindow::ProcessingFrame(cv::Mat frame) {
+    // Grayscale conversion (in-place operation)
+    Mat src_gray;
+    cv::cvtColor(frame, frame, CV_RGB2BGR);
+    cv::cvtColor(frame, src_gray, CV_BGR2GRAY);
+    GaussianBlur( src_gray, src_gray, Size(9, 9), 2, 2 );
+    return QImage((uchar*) (frame.data), frame.cols, frame.rows, frame.step, QImage::Format_RGB888);
+}
+

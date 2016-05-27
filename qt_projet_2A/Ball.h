@@ -1,69 +1,46 @@
-#include "Ball.h"
+#pragma once
+#include <string>
+#include <opencv/cv.h>
+#include <opencv/highgui.h>
+using namespace std;
+using namespace cv;
 
 
-Ball::Ball()
+
+class Ball
 {
-}
+public:
+	Ball(void);
+	~Ball(void);
 
-Ball::Ball(String name){
-	
-	setType(name);
-	if (name == "vert"){
-		setHSVmin(Scalar(70, 24, 121));
-		setHSVmax(Scalar(100, 126, 255));
+	Ball(string name);
 
-		setColour(Scalar(0, 255, 0));
+	int getXPos();
+	void setXPos(int x);
+
+	int getYPos();
+	void setYPos(int y);
+
+	Scalar getHSVmin();
+	Scalar getHSVmax();
+
+	void setHSVmin(Scalar min);
+	void setHSVmax(Scalar max);
+
+	String getType(){ return type; }
+	void setType(String t){ type = t; }
+
+	Scalar getColour(){
+		return Colour;
 	}
-	if (name == "rouge"){
-		setHSVmin(Scalar(0, 0, 0));
-		setHSVmax(Scalar(5, 5, 255));
-
-		setColour(Scalar(0, 0, 255));
+	void setColour(Scalar c){
+		Colour = c;
 	}
-	if (name == "blanc"){
-		setHSVmin(Scalar(0, 30, 225));
-		setHSVmax(Scalar(17, 80, 255));
 
-		setColour(Scalar(255, 255, 255));
-	}
-}
+private:
+	int xPos, yPos;
+	string type;
+	Scalar HSVmin, HSVmax;
+	Scalar Colour;
+};
 
-Ball::~Ball()
-{
-}
-
-int Ball::getXPos(){
-
-	return Ball::xPos;
-}
-
-void Ball::setXPos(int x){
-
-	Ball::xPos = x;
-}
-int Ball::getYPos(){
-
-	return Ball::yPos;
-}
-
-void Ball::setYPos(int y){
-
-	Ball::yPos = y;
-}
-
-Scalar Ball::getHSVmin(){
-
-	return Ball::HSVmin;
-}
-Scalar Ball::getHSVmax(){
-
-	return Ball::HSVmax;
-}
-void Ball::setHSVmin(Scalar min){
-
-	Ball::HSVmin = min;
-}
-void Ball::setHSVmax(Scalar max){
-
-	Ball::HSVmax = max;
-}

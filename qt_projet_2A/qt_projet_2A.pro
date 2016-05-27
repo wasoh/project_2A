@@ -14,11 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    Ball.cpp
+    Ball.cpp \
+    camera.cpp
 
 LIBS += `pkg-config opencv --libs`
 
 HEADERS  += mainwindow.h \
-    Ball.h
+    Ball.h \
+    camera.h
 
 FORMS    += mainwindow.ui

@@ -14,11 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    Ball.cpp
+    Ball.cpp \
+    ssh.cpp
 
 LIBS += `pkg-config opencv --libs` -lssh
 
 HEADERS  += mainwindow.h \
-    Ball.h
+    Ball.h \
+    ssh.h
 
 FORMS    += mainwindow.ui

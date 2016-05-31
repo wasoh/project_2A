@@ -1,5 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#define hostname "10.0.0.3"
+#define port 22
+#define user "robot"
+#define password "maker"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -31,6 +35,15 @@ void MainWindow::displayFrame() {
     ui->label_cam->setPixmap(QPixmap::fromImage(image).scaled(ui->label_cam->width(), ui->label_cam->height(),Qt::KeepAspectRatio));
 
     //ui->label->resize(ui->label->pixmap()->size());
+}
+
+void MainWindow::ModeManuel(){
+    qDebug("Mode Manuel");
+    Ssh connexion_ssh(hostname,user,password,port);
+    connexion_ssh.Ssh_Connexion();
+    connexion_ssh.Ssh_Identification();
+    connexion_ssh.Ssh_Lancer("python /home/robot/CodePython/ps3.py");
+    //connexion_ssh.Ssh_Terminer();
 }
 
 void MainWindow::ModeManuel(){

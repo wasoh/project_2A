@@ -14,10 +14,6 @@
 #include <opencv/cv.h>
 #include "camera.h"
 
-// Ssh
-#include <libssh/libssh.h>
-#include "ssh.h"
-
 
 #define hostname "192.168.62.103"
 #define port 22
@@ -42,12 +38,11 @@ public:
 private:
     Ui::MainWindow *ui;
     Camera* cam;
+    Ssh* connexion_ssh;
+    bool modeManuel = false;
 
 private slots:
     void displayFrame();
-    void ModeManuel();
-
-private slots:
     void ModeManuel();
 };
 

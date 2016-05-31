@@ -1,9 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#define hostname "10.0.0.3"
-#define port 22
-#define user "robot"
-#define password "maker"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -11,13 +8,15 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     cam = new Camera();
-    int fps = 1000/100;
+    connexion_ssh = new Ssh(hostname,user,password,port);
+
+    int fps = 1000/2;
     QTimer *qTimer = new QTimer(this);
     qTimer->setInterval(fps);
     connect(qTimer, SIGNAL(timeout()), this, SLOT(displayFrame()));
     qTimer->start();
 
-     connect(ui->btnManuel, SIGNAL(clicked(bool)), this, SLOT(ModeManuel()));
+    connect(ui->btnManuel, SIGNAL(clicked(bool)), this, SLOT(ModeManuel()));
 }
 
 MainWindow::~MainWindow()
@@ -38,19 +37,17 @@ void MainWindow::displayFrame() {
 }
 
 void MainWindow::ModeManuel(){
-    qDebug("Mode Manuel");
-    Ssh connexion_ssh(hostname,user,password,port);
-    connexion_ssh.Ssh_Connexion();
-    connexion_ssh.Ssh_Identification();
-    connexion_ssh.Ssh_Lancer("python /home/robot/CodePython/ps3.py");
-    //connexion_ssh.Ssh_Terminer();
-}
-
-void MainWindow::ModeManuel(){
-    qDebug("Mode Manuel");
-    Ssh connexion_ssh(hostname,user,password,port);
-    connexion_ssh.Ssh_Connexion();
-    connexion_ssh.Ssh_Identification();
-    connexion_ssh.Ssh_Lancer("python /home/robot/CodePython/ps3.py");
-    //connexion_ssh.Ssh_Terminer();
+    if(!modeManuel)
+    {
+        qDebug("Mode Manuel");
+        connexion_ssh->Ssh_Connexion();
+        connexion_ssh->Ssh_Identification();
+        connexion_ssh->Ssh_Lancer("python /home/robot/CodePython/ps3.py");
+        ui->btnManuel->setText("Manuel <On>");
+    }
+    else
+    {
+        connexion_ssh->Ssh_Terminer();
+        ui->btnManuel->setText("Manuel <Off>");
+    }
 }

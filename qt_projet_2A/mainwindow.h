@@ -8,10 +8,19 @@
 // OpenCV
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv/cv.h>
-
 #include "camera.h"
 
+// Ssh
+#include <libssh/libssh.h>
+#include "ssh.h"
+
+
+#define hostname "192.168.62.103"
+#define port 22
+#define user "robot"
+#define password "maker"
 using namespace cv;
+
 
 namespace Ui {
 class MainWindow;
@@ -30,8 +39,9 @@ private:
     Ui::MainWindow *ui;
     Camera* cam;
 
-public slots:
+private slots:
     void displayFrame();
+    void ModeManuel();
 
 };
 

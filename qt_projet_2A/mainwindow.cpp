@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     qTimer->setInterval(fps);
     connect(qTimer, SIGNAL(timeout()), this, SLOT(displayFrame()));
     qTimer->start();
+
+     connect(ui->btnManuel, SIGNAL(clicked(bool)), this, SLOT(ModeManuel()));
 }
 
 MainWindow::~MainWindow()
@@ -31,3 +33,11 @@ void MainWindow::displayFrame() {
     //ui->label->resize(ui->label->pixmap()->size());
 }
 
+void MainWindow::ModeManuel(){
+    qDebug("Mode Manuel");
+    Ssh connexion_ssh(hostname,user,password,port);
+    connexion_ssh.Ssh_Connexion();
+    connexion_ssh.Ssh_Identification();
+    connexion_ssh.Ssh_Lancer("python /home/robot/CodePython/ps3.py");
+    //connexion_ssh.Ssh_Terminer();
+}

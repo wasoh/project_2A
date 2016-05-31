@@ -7,7 +7,6 @@
 #include "opencv/highgui.h"
 #include "Ball.h"
 #include "opencv/cv.h"
-#include "ssh.h"
 
 using namespace cv;
 //initial min and max HSV filter values.
@@ -210,9 +209,5 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     //test();
-    Ssh connexion_ssh("10.0.0.4","robot","maker",22);
-    connexion_ssh.Ssh_Connexion();
-    connexion_ssh.Ssh_Identification();
-    connexion_ssh.Ssh_Terminer();
     return a.exec();
 }

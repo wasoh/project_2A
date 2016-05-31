@@ -1,5 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#define hostname "10.0.0.3"
+#define port 22
+#define user "robot"
+#define password "maker"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -12,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    qTimer->setInterval(fps);
 //    connect(qTimer, SIGNAL(timeout()), this, SLOT(displayFrame()));
 //    qTimer->start();
+    connect(ui->btnManuel, SIGNAL(clicked(bool)), this, SLOT(ModeManuel()));
 }
 
 MainWindow::~MainWindow()
@@ -67,5 +72,14 @@ QImage MainWindow::ProcessingFrame(cv::Mat frame) {
     cv::cvtColor(frame, src_gray, CV_BGR2GRAY);
     GaussianBlur( src_gray, src_gray, Size(9, 9), 2, 2 );
     return QImage((uchar*) (frame.data), frame.cols, frame.rows, frame.step, QImage::Format_RGB888);
+}
+
+void MainWindow::ModeManuel(){
+    qDebug("Mode Manuel");
+    Ssh connexion_ssh(hostname,user,password,port);
+    connexion_ssh.Ssh_Connexion();
+    connexion_ssh.Ssh_Identification();
+    connexion_ssh.Ssh_Lancer("python /home/robot/CodePython/ps3.py");
+    //connexion_ssh.Ssh_Terminer();
 }
 

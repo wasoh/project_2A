@@ -17,5 +17,6 @@ public:
     Ssh(char*,char*,char*,int);
     void Ssh_Connexion();
     void Ssh_Identification();
+    void Ssh_Lancer(char*);
     void Ssh_Terminer();
 };

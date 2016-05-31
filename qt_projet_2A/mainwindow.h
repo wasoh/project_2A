@@ -5,6 +5,10 @@
 #include <QTimer>
 #include <QDebug>
 
+// Ssh
+#include <libssh/libssh.h>
+#include "ssh.h"
+
 // OpenCV
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv/cv.h>
@@ -33,6 +37,8 @@ private:
 public slots:
     void displayFrame();
 
+private slots:
+    void ModeManuel();
 };
 
 #endif // MAINWINDOW_H

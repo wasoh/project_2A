@@ -9,6 +9,8 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv/cv.h>
 
+#include "camera.h"
+
 using namespace cv;
 
 namespace Ui {
@@ -23,12 +25,10 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     VideoCapture webcam;
-    QImage getQImageFromFrame(cv::Mat frame);
-    QImage ProcessingFrame(cv::Mat frame);
-    Mat captureFrame();
 
 private:
     Ui::MainWindow *ui;
+    Camera* cam;
 
 public slots:
     void displayFrame();

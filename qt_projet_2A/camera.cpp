@@ -53,7 +53,7 @@ void morphOps(Mat &thresh){
 
 }
 
-void trackFilteredObject(Ball theBall, Mat threshold, Mat &cameraFeed){
+void trackFilteredObject(Ball typeBall, Mat threshold, Mat &cameraFeed){
 
     vector<Ball> verts;
 
@@ -85,8 +85,8 @@ void trackFilteredObject(Ball theBall, Mat threshold, Mat &cameraFeed){
                     Ball vert;
                     vert.setXPos(moment.m10 / area);
                     vert.setYPos(moment.m01 / area);
-                    vert.setType(theBall.getType());
-                    vert.setColour(theBall.getColour());
+                    vert.setType(typeBall.getType());
+                    vert.setColour(typeBall.getColour());
 
                     verts.push_back(vert);
 

@@ -16,13 +16,16 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     Ball.cpp \
     camera.cpp \
-    ssh.cpp
+    ssh.cpp \
+    settingballs.cpp
 
 LIBS += `pkg-config opencv --libs` -lssh
 
 HEADERS  += mainwindow.h \
     Ball.h \
     camera.h \
-    ssh.h
+    ssh.h \
+    settingballs.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    settingballs.ui

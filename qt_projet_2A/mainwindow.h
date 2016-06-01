@@ -39,6 +39,9 @@ public slots:
 
 private slots:
     void ModeManuel();
+    void ModeSolo();
+    void ModeAssis();
+    void Stop();
 };
 
 #endif // MAINWINDOW_H

@@ -1,9 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#define hostname "10.0.0.3"
+#define hostname "192.168.0.1"
 #define port 22
 #define user "robot"
 #define password "maker"
+
+Ssh connexion_ssh(hostname,user,password,port);
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -17,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
 //    connect(qTimer, SIGNAL(timeout()), this, SLOT(displayFrame()));
 //    qTimer->start();
     connect(ui->btnManuel, SIGNAL(clicked(bool)), this, SLOT(ModeManuel()));
+    connect(ui->btnSoloMode, SIGNAL(clicked(bool)), this, SLOT(ModeSolo()));
+    connect(ui->btnAssiste, SIGNAL(clicked(bool)),this, SLOT(ModeAssis()));
 }
 
 MainWindow::~MainWindow()
@@ -76,10 +80,30 @@ QImage MainWindow::ProcessingFrame(cv::Mat frame) {
 
 void MainWindow::ModeManuel(){
     qDebug("Mode Manuel");
-    Ssh connexion_ssh(hostname,user,password,port);
-    connexion_ssh.Ssh_Connexion();
-    connexion_ssh.Ssh_Identification();
-    connexion_ssh.Ssh_Lancer("python /home/robot/CodePython/ps3.py");
-    //connexion_ssh.Ssh_Terminer();
+    connect(ui->btnStop, SIGNAL(clicked(bool)), this, SLOT(Stop()));
+    //connexion_ssh.Ssh_Connexion();
+    //connexion_ssh.Ssh_Identification();
+    //connexion_ssh.Ssh_Lancer("python /home/robot/CodePython/ps3.py");
 }
 
+void MainWindow::ModeSolo(){
+    qDebug("Mode Solo");
+    connect(ui->btnStop, SIGNAL(clicked(bool)), this, SLOT(Stop()));
+    //connexion_ssh.Ssh_Connexion();
+    //connexion_ssh.Ssh_Identification();
+    //connexion_ssh.Ssh_Lancer("python /home/robot/CodePython/ftg");
+}
+
+void MainWindow::ModeAssis(){
+    qDebug("Mode Assisté");
+    connect(ui->btnStop, SIGNAL(clicked(bool)), this, SLOT(Stop()));
+    connexion_ssh.Ssh_Connexion();
+    connexion_ssh.Ssh_Identification();
+    // Ajouter code du mode assisté
+    connexion_ssh.Ssh_Lancer("python /home/robot/CodePython/assis");
+}
+
+void MainWindow::Stop(){
+    qDebug("Stop");
+    connexion_ssh.Ssh_Terminer();
+}

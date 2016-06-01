@@ -77,9 +77,9 @@
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>210</y>
+      <y>110</y>
       <width>291</width>
-      <height>181</height>
+      <height>281</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="flBallDetected">
@@ -158,41 +158,20 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="gridLayoutWidget">
+   <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>80</y>
+      <y>60</y>
       <width>291</width>
-      <height>95</height>
+      <height>41</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="2">
-      <widget class="QPushButton" name="btnUp">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QPushButton" name="btnStop">
        <property name="text">
-        <string>Up</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3">
-      <widget class="QPushButton" name="btnRight">
-       <property name="text">
-        <string>Right</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="2">
-      <widget class="QPushButton" name="bbtnDown">
-       <property name="text">
-        <string>Down</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QPushButton" name="btnLeft">
-       <property name="text">
-        <string>Left</string>
+        <string>Stop</string>
        </property>
       </widget>
      </item>
@@ -205,7 +184,7 @@
      <x>0</x>
      <y>0</y>
      <width>612</width>
-     <height>27</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

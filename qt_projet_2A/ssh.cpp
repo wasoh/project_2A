@@ -1,10 +1,5 @@
 #include "ssh.h"
 
-ssh_session session;
-char* hostname;
-char* password;
-char* user;
-int port;
 
 // Définie les paramètres de la connexion ssh
 Ssh::Ssh(char* hostname, char* user, char* password, int port){

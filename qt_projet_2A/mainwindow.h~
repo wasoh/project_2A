@@ -45,11 +45,14 @@ private:
 private slots:
     void displayFrame();
     void ModeManuel();
+<<<<<<< HEAD
     void ModeSolo();
     void ModeAssis();
     void Stop();
+=======
     void OpenSetting();
 
+>>>>>>> master
 };
 
 #endif // MAINWINDOW_H

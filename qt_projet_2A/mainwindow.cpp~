@@ -82,4 +82,7 @@ void MainWindow::ModeAssis(){
 void MainWindow::Stop(){
     qDebug("Stop");
     connexion_ssh.Ssh_Terminer();
-}    
+}
+
+        
+

@@ -6,20 +6,20 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+    ui->setupUi(this);    
+
     cam = new Camera();
     connexion_ssh = new Ssh(hostname,user,password,port);
 
-    int fps = 1000/2;
+    int fps = 1000/25;
     QTimer *qTimer = new QTimer(this);
     qTimer->setInterval(fps);
     connect(qTimer, SIGNAL(timeout()), this, SLOT(displayFrame()));
     qTimer->start();
 
     connect(ui->btnManuel, SIGNAL(clicked(bool)), this, SLOT(ModeManuel()));
-    SettingBalls *dialog = new SettingBalls(this,cam);
-    dialog->exec();
-        //SettingBalls s = new SettingBalls(ui,cam);
+    connect(ui->btnAssiste, SIGNAL(clicked(bool)), this, SLOT(OpenSetting()));
+
 }
 
 MainWindow::~MainWindow()
@@ -39,14 +39,25 @@ void MainWindow::displayFrame() {
     //ui->label->resize(ui->label->pixmap()->size());
 }
 
+void MainWindow::OpenSetting(){
+    SettingBalls *dialog = new SettingBalls(this,cam);
+    dialog->exec();
+}
+
 void MainWindow::ModeManuel(){
     if(!modeManuel)
     {
         qDebug("Mode Manuel");
-        connexion_ssh->Ssh_Connexion();
-        connexion_ssh->Ssh_Identification();
-        connexion_ssh->Ssh_Lancer("python /home/robot/CodePython/ps3.py");
-        ui->btnManuel->setText("Manuel <On>");
+        try{
+            connexion_ssh->Ssh_Connexion();
+            connexion_ssh->Ssh_Identification();
+            connexion_ssh->Ssh_Lancer("python /home/robot/CodePython/ps3.py");
+            ui->btnManuel->setText("Manuel <On>");
+        }
+        catch(const std::bad_alloc &)
+        {
+            qDebug("Impossible de se connecter");
+        }
     }
     else
     {

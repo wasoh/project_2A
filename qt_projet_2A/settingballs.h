@@ -27,12 +27,17 @@ private:
     Camera *cam;
     Vector<QLabel*> listLable;
     Vector<QSlider*> listSlider;
-    void chargeSettingBall(int id);
+    int idBall =0;
+    bool init = true;
+    //void chargeSettingBall(int id);
 
 signals:
 
 public slots:
 
+private slots:
+    void chargeSettingBall(int id);
+    void validation();
 };
 
 #endif // SETTINGBALLS_H

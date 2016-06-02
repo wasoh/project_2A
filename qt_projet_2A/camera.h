@@ -10,8 +10,8 @@
 //local
 #include "Ball.h"
 
-#define ID_DEVICE       0
-#define CALIBRATION_MODE       false
+#define ID_DEVICE               0
+#define CALIBRATION_MODE        false
 
 //default capture width and height
 const int FRAME_WIDTH = 640;
@@ -31,7 +31,6 @@ public:
     Mat rechecherBalles();
     Vector<Ball> getBalls();
     void setBalls(Vector<Ball> ball);
-
 
 private :
     VideoCapture capture;

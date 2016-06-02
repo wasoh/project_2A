@@ -40,10 +40,13 @@ private:
     Camera* cam;
     Ssh* connexion_ssh;
     bool modeManuel = false;
+    bool openSet = false;
 
 private slots:
     void displayFrame();
     void ModeManuel();
+    void OpenSetting();
+
 };
 
 #endif // MAINWINDOW_H

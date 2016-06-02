@@ -15,14 +15,14 @@ Ball::Ball(String name){
 		setColour(Scalar(0, 255, 0));
 	}
 	if (name == "rouge"){
-		setHSVmin(Scalar(0, 0, 0));
-		setHSVmax(Scalar(5, 5, 255));
+        setHSVmin(Scalar(0, 30, 225));
+        setHSVmax(Scalar(17, 80, 255));
 
 		setColour(Scalar(0, 0, 255));
 	}
 	if (name == "blanc"){
-		setHSVmin(Scalar(0, 30, 225));
-		setHSVmax(Scalar(17, 80, 255));
+        setHSVmin(Scalar(0, 0, 0));
+        setHSVmax(Scalar(5, 5, 255));
 
 		setColour(Scalar(255, 255, 255));
 	}

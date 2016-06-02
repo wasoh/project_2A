@@ -10,7 +10,7 @@
 //local
 #include "Ball.h"
 
-#define ID_DEVICE               0
+#define ID_DEVICE               1
 #define CALIBRATION_MODE        false
 
 //default capture width and height

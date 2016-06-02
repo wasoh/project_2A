@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>653</width>
+    <width>693</width>
     <height>453</height>
    </rect>
   </property>
@@ -19,12 +19,19 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>302</width>
+      <width>321</width>
       <height>381</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
-     <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+     <item>
+      <widget class="QPushButton" name="btsetting">
+       <property name="text">
+        <string>Setting</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="label_cam">
        <property name="minimumSize">
         <size>
@@ -48,7 +55,7 @@
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>340</x>
       <y>10</y>
       <width>331</width>
       <height>41</height>
@@ -72,7 +79,7 @@
      <item>
       <widget class="QPushButton" name="btnManuel">
        <property name="text">
-        <string>Manuel &lt;Off&gt;</string>
+        <string>Manuel</string>
        </property>
       </widget>
      </item>
@@ -81,7 +88,7 @@
    <widget class="QWidget" name="formLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>360</x>
       <y>110</y>
       <width>291</width>
       <height>281</height>
@@ -166,7 +173,7 @@
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>360</x>
       <y>60</y>
       <width>291</width>
       <height>41</height>
@@ -188,8 +195,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>612</width>
-     <height>25</height>
+     <width>693</width>
+     <height>20</height>
     </rect>
    </property>
   </widget>

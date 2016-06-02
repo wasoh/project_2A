@@ -23,7 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->btnManuel, SIGNAL(clicked(bool)), this, SLOT(ModeManuel()));
     connect(ui->btnSoloMode, SIGNAL(clicked(bool)), this, SLOT(ModeSolo()));
     connect(ui->btnAssiste, SIGNAL(clicked(bool)),this, SLOT(ModeAssis()));
-    connect(ui->btnAssiste, SIGNAL(clicked(bool)), this, SLOT(OpenSetting()));
+    connect(ui->btsetting, SIGNAL(clicked(bool)), this, SLOT(OpenSetting()));
+    connect(ui->btnStop, SIGNAL(clicked(bool)), this, SLOT(Stop()));
+    ui->btnStop->setVisible(false);
 
 }
 
@@ -55,6 +57,7 @@ void MainWindow::ModeManuel(){
             connexion_ssh->Ssh_Connexion();
             connexion_ssh->Ssh_Identification();
             connexion_ssh->Ssh_Lancer("python /home/robot/CodePython/ps3.py");
+            ui->btnStop->setVisible(true);
         }
         catch(const std::bad_alloc &)
         {
@@ -64,22 +67,36 @@ void MainWindow::ModeManuel(){
 
 void MainWindow::ModeSolo(){
     qDebug("Mode Solo");
-    connect(ui->btnStop, SIGNAL(clicked(bool)), this, SLOT(Stop()));
-    connexion_ssh.Ssh_Connexion();
-    connexion_ssh.Ssh_Identification();
-    connexion_ssh.Ssh_Lancer("python /home/robot/CodePython/ftg");
+    try{
+        connexion_ssh->Ssh_Connexion();
+        connexion_ssh->Ssh_Identification();
+        connexion_ssh->Ssh_Lancer("python /home/robot/CodePython/ftg");
+        ui->btnStop->setVisible(true);
+    }
+    catch(const std::bad_alloc &)
+    {
+        qDebug("Impossible de se connecter");
+    }
 }
 
 void MainWindow::ModeAssis(){
     qDebug("Mode Assisté");
-    connect(ui->btnStop, SIGNAL(clicked(bool)), this, SLOT(Stop()));
-    connexion_ssh.Ssh_Connexion();
-    connexion_ssh.Ssh_Identification();
-    //Ajouter code du mode assisté
-    connexion_ssh.Ssh_Lancer("python /home/robot/CodePython/assis");
+    try{
+        connexion_ssh->Ssh_Connexion();
+        connexion_ssh->Ssh_Identification();
+        //Ajouter code du mode assisté
+        connexion_ssh->Ssh_Lancer("python /home/robot/CodePython/assis");
+        ui->btnStop->setVisible(true);
+    }
+    catch(const std::bad_alloc &)
+    {
+        qDebug("Impossible de se connecter");
+    }
+
 }
 
 void MainWindow::Stop(){
     qDebug("Stop");
-    connexion_ssh.Ssh_Terminer();
+    connexion_ssh->Ssh_Terminer();
+    ui->btnStop->setVisible(false);
 }    

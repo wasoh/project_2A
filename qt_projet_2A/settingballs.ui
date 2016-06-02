@@ -39,7 +39,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_hmin">
+       <widget class="QLabel" name="labelhmin">
         <property name="minimumSize">
          <size>
           <width>22</width>
@@ -288,39 +288,6 @@
     <string>Image</string>
    </property>
   </widget>
-  <widget class="QWidget" name="verticalLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>310</y>
-     <width>281</width>
-     <height>29</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_7">
-    <item>
-     <widget class="QPushButton" name="pushButton_3">
-      <property name="text">
-       <string>Annuler</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="text">
-       <string>Confirmer</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="pushButton">
-      <property name="text">
-       <string>Ok</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
@@ -342,6 +309,19 @@
      <widget class="QLineEdit" name="lineEdit"/>
     </item>
    </layout>
+  </widget>
+  <widget class="QDialogButtonBox" name="buttonBox">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>310</y>
+     <width>166</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   </property>
   </widget>
  </widget>
  <resources/>

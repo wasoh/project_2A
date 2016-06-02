@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "settingballs.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -17,6 +17,9 @@ MainWindow::MainWindow(QWidget *parent) :
     qTimer->start();
 
     connect(ui->btnManuel, SIGNAL(clicked(bool)), this, SLOT(ModeManuel()));
+    SettingBalls *dialog = new SettingBalls(this,cam);
+    dialog->exec();
+        //SettingBalls s = new SettingBalls(ui,cam);
 }
 
 MainWindow::~MainWindow()

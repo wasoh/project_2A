@@ -129,3 +129,13 @@ Mat Camera::rechecherBalles()
 
     return cameraFeed;
 }
+
+Vector<Ball> Camera::getBalls()
+{
+    return balles;
+}
+
+void Camera::setBalls(Vector<Ball> ball)
+{
+    balles = ball;
+}

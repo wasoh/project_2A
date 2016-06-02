@@ -1,9 +1,10 @@
 #ifndef SETTINGBALLS_H
 #define SETTINGBALLS_H
 
-#include <QWidget>
 #include <QDialog>
 #include <vector>
+#include <QLabel>
+#include <QSlider>
 
 #include "Ball.h"
 #include "camera.h"
@@ -12,17 +13,21 @@ namespace Ui {
 class SettingBalls;
 }
 
-class SettingBalls : public QWidget
+class SettingBalls : public QDialog
 {
     Q_OBJECT
+
 public:
-    explicit SettingBalls(QWidget *parent, Vector<Ball> *balls, Camera *cam);
+    explicit SettingBalls(QWidget *parent=0, Camera *camera=NULL);
     ~SettingBalls();
 
 private:
     Ui::SettingBalls *ui;
-    Vector<Ball> *ballCopie;
+    Vector<Ball> ballCopie;
     Camera *cam;
+    Vector<QLabel*> listLable;
+    Vector<QSlider*> listSlider;
+    void chargeSettingBall(int id);
 
 signals:
 

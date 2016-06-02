@@ -29,6 +29,9 @@ class Camera
 public:
     Camera();
     Mat rechecherBalles();
+    Vector<Ball> getBalls();
+    void setBalls(Vector<Ball> ball);
+
 
 private :
     VideoCapture capture;
